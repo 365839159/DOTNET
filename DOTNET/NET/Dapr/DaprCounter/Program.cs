@@ -21,7 +21,6 @@ namespace DaprCounter
                 await daprClient.SaveStateAsync(storeName, key, counter);
                 await Task.Delay(1000);
             }
-            Console.WriteLine("Hello World!");
         }
     }
 }
