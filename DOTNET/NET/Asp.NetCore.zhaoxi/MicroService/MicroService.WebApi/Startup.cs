@@ -19,6 +19,7 @@ namespace MicroService.WebApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         private IConfiguration Configuration { get; }
