@@ -1,0 +1,39 @@
+﻿@page "/counter"
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@foreach (var item in list)
+{
+    <div>
+   @foreach (var key in item.Keys)
+    {
+        <p>@item.GetValueOrDefault(@key)</p>
+    }
+    </div>
+}
+@code {
+    private int currentCount = 0;
+
+    private List<Dictionary<string,object>> list =new List<Dictionary<string, object>> ();
+    private void IncrementCount()
+    {
+        currentCount++;
+        currentCount++;
+        currentCount++;
+        currentCount++;
+        currentCount++;
+        currentCount++;
+        currentCount++;
+    }
+     protected override async Task OnInitializedAsync()
+    {
+        var students = await Http.GetFromJsonAsync<List<Dictionary<string,object>>>("/WeatherForecast");
+        this.list = students;
+    }
+}

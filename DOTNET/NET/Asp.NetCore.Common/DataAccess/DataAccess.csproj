@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Asp.NetCore.Infrastructure\Asp.NetCore.Infrastructure.csproj" />
+      <ProjectReference Include="..\EntityFrameworkCore.Base\EntityFrameworkCore.Base.csproj" />
+      <ProjectReference Include="..\IDataAccess\IDataAccess.csproj" />
+    </ItemGroup>
+
+</Project>

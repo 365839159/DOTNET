@@ -1,0 +1,25 @@
+{
+  "author": "zhang xian cheng",
+  "name": "ClassLibrary",
+  "description": "A project for creating a command-line application that can run on .NET Core on Windows, Linux and macOS, and has an async Main method.",
+  "identity": "zhangxiancheng.ClassLibrary.1.0",
+  "shortName": "ClassLibrary",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "ClassLibrary",
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net5.0"
+        }
+      ],
+      "defaultValue": "net5.0"
+    }
+  }
+}
