@@ -16,7 +16,12 @@ namespace AutoMapperDemo
             {
                 //硬编码
                 var userInfodto = new UserInfoDto
-                { Id = userInfo.Id, Adress = userInfo.Adress, Age = userInfo.Age, Name = userInfo.Name };
+                { 
+                    Id = userInfo.Id, 
+                    Adress = userInfo.Adress, 
+                    Age = userInfo.Age, 
+                    Name = userInfo.Name 
+                };
             }
 
             {

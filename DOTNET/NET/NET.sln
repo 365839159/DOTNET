@@ -113,11 +113,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensins", "Extensins", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AutoMapperProject", "AutoMapperProject", "{B7FB31AE-FE00-482C-909D-A8519497D84D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapperDemo", "Asp.NetCore.zhaoxi\Extensins\AutoMapperDemo\AutoMapperDemo.csproj", "{3DD11B4E-5C88-4F6D-BF17-AEABE1372298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapperDemo", "Asp.NetCore.zhaoxi\Extensins\AutoMapperDemo\AutoMapperDemo.csproj", "{3DD11B4E-5C88-4F6D-BF17-AEABE1372298}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapperEntity", "Asp.NetCore.zhaoxi\Extensins\AutoMapperEntity\AutoMapperEntity.csproj", "{CE0F34D7-5E44-42FA-8F27-5478D8C5EB07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapperEntity", "Asp.NetCore.zhaoxi\Extensins\AutoMapperEntity\AutoMapperEntity.csproj", "{CE0F34D7-5E44-42FA-8F27-5478D8C5EB07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapperDTO", "Asp.NetCore.zhaoxi\Extensins\AutoMapperDTO\AutoMapperDTO.csproj", "{A727D782-957D-4A3A-80CE-BD2ED1532E8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapperDTO", "Asp.NetCore.zhaoxi\Extensins\AutoMapperDTO\AutoMapperDTO.csproj", "{A727D782-957D-4A3A-80CE-BD2ED1532E8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ABPVNext", "ABPVNext", "{EDE15A24-70ED-4432-8E17-0EB318C7FFAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ABPVNext", "ABPVNext", "{8E796DA2-6D7A-4972-8881-0F8919A49151}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -305,6 +309,7 @@ Global
 		{3DD11B4E-5C88-4F6D-BF17-AEABE1372298} = {B7FB31AE-FE00-482C-909D-A8519497D84D}
 		{CE0F34D7-5E44-42FA-8F27-5478D8C5EB07} = {B7FB31AE-FE00-482C-909D-A8519497D84D}
 		{A727D782-957D-4A3A-80CE-BD2ED1532E8E} = {B7FB31AE-FE00-482C-909D-A8519497D84D}
+		{EDE15A24-70ED-4432-8E17-0EB318C7FFAE} = {AA787F6C-3221-4390-ACEB-B5AC5B8CD126}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E65D7B53-8E92-4180-8114-508FF262B516}
