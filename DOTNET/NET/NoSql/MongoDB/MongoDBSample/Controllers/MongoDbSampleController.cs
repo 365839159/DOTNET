@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
 namespace MongoDBSample.Controllers
@@ -20,6 +21,8 @@ namespace MongoDBSample.Controllers
             _logger = logger;
             _mongoDatabase = _mongoClient.GetDatabase("mongodbSample");
         }
+
+        #region insert
 
         /// <summary>
         /// 添加单个文档
@@ -72,6 +75,10 @@ namespace MongoDBSample.Controllers
             collection.InsertMany(documents);
         }
 
+        #endregion
+
+        #region Find
+
         /// <summary>
         /// 查询所有文档
         /// </summary>
@@ -119,7 +126,7 @@ namespace MongoDBSample.Controllers
         [HttpPost]
         public async Task<object> FindIn()
         {
-            var filter = Builders<BsonDocument>.Filter.In("status", new[] {"A", "D"});
+            var filter = Builders<BsonDocument>.Filter.In("status", new[] { "A", "D" });
             var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
             var result = collection.Find(filter).ToList();
             List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
@@ -205,7 +212,7 @@ namespace MongoDBSample.Controllers
         public async Task<object> FindEqDocument()
         {
             var filter =
-                Builders<BsonDocument>.Filter.Eq("size", new BsonDocument {{"h", 14}, {"w", 21}, {"uom", "cm"}});
+                Builders<BsonDocument>.Filter.Eq("size", new BsonDocument { { "h", 14 }, { "w", 21 }, { "uom", "cm" } });
             var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
             var result = collection.Find(filter).ToList();
             List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
@@ -286,7 +293,7 @@ namespace MongoDBSample.Controllers
         [HttpPost]
         public async Task<object> FindEqArray()
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("tags", new[] {"red", "blank"});
+            var filter = Builders<BsonDocument>.Filter.Eq("tags", new[] { "red", "blank" });
             var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
             var result = collection.Find(filter).ToList();
             List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
@@ -306,7 +313,7 @@ namespace MongoDBSample.Controllers
         [HttpPost]
         public async Task<object> FindEqArrayIgnoreElementAndElementOrder()
         {
-            var filter = Builders<BsonDocument>.Filter.All("tags", new[] {"red", "blank"});
+            var filter = Builders<BsonDocument>.Filter.All("tags", new[] { "red", "blank" });
             var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
             var result = collection.Find(filter).ToList();
             List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
@@ -388,7 +395,7 @@ namespace MongoDBSample.Controllers
         public async Task<object> FindArrayElemMatch()
         {
             var builder = Builders<BsonDocument>.Filter;
-            var filter = builder.ElemMatch<BsonValue>("dim_cm", new BsonDocument {{"$gt", 22}, {"$lt", 30}});
+            var filter = builder.ElemMatch<BsonValue>("dim_cm", new BsonDocument { { "$gt", 22 }, { "$lt", 30 } });
             var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
             var result = collection.Find(filter).ToList();
             List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
@@ -502,7 +509,7 @@ namespace MongoDBSample.Controllers
         public async Task<object> FindArrayDocmentSingeAnyEq()
         {
             var filter =
-                Builders<BsonDocument>.Filter.AnyEq("instock", new BsonDocument {{"warehouse", "A"}, {"qty", 5}});
+                Builders<BsonDocument>.Filter.AnyEq("instock", new BsonDocument { { "warehouse", "A" }, { "qty", 5 } });
             var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
             var result = collection.Find(filter).ToList();
             List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
@@ -534,5 +541,171 @@ namespace MongoDBSample.Controllers
 
             return data;
         }
+
+        /// <summary>
+        /// 根据索引查询文档中的字段
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<object> FindArrayDocumentFieldOperatorByIndex()
+        {
+            var filter = Builders<BsonDocument>.Filter.Lte("instock.0.qty", 5);
+            var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
+            var result = collection.Find(filter).ToList();
+            List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
+            foreach (var item in result)
+            {
+                var dic = item.ToDictionary();
+                data.Add(dic);
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// 单个嵌套文档在嵌套字段上满足多个查询条件
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<object> FindArrayDocumentManyFileOperator()
+        {
+            var filter = Builders<BsonDocument>.Filter.ElemMatch<BsonValue>(
+                "instock",
+                new BsonDocument
+                {
+                    {"qty", 5},
+                    {"warehouse", "A"}
+                });
+            var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
+            var result = collection.Find(filter).ToList();
+            List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
+            foreach (var item in result)
+            {
+                var dic = item.ToDictionary();
+                data.Add(dic);
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// 单个嵌套文档在嵌套字段上满足多个查询条件
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<object> FindArrayDocumentManyFileOperator1()
+        {
+            var filter = Builders<BsonDocument>.Filter.ElemMatch<BsonValue>(
+                "instock",
+                new BsonDocument
+                {
+                    {
+                        "qty", new BsonDocument
+                        {
+                            {"$gt", 10},
+                            {"$lte", 20}
+                        }
+                    },
+                });
+            var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
+            var result = collection.Find(filter).ToList();
+            List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
+            foreach (var item in result)
+            {
+                var dic = item.ToDictionary();
+                data.Add(dic);
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// 元素组合满足标准
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<object> FindArrayDocumentNotElemMatch()
+        {
+            var builder = Builders<BsonDocument>.Filter;
+            var filter = builder.And(
+                builder.Gt("instock.qty", 35),
+                builder.Lt("instock.qty", 60));
+            var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
+            var result = collection.Find(filter).ToList();
+            List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
+            foreach (var item in result)
+            {
+                var dic = item.ToDictionary();
+                data.Add(dic);
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// 元素组合满足标准
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<object> FindArrayDocumentNotElemMatch1()
+        {
+            var builder = Builders<BsonDocument>.Filter;
+            var filter = builder.And(
+                builder.Eq("instock.qty", 5),
+                builder.Eq("instock.warehouse", "A"));
+            var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
+            var result = collection.Find(filter).ToList();
+            List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
+            foreach (var item in result)
+            {
+                var dic = item.ToDictionary();
+                data.Add(dic);
+            }
+
+            return data;
+        }
+
+        #endregion
+
+        #region  Projection
+
+        /// <summary>
+        /// 查询所有文档
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<object> FindAllProjection()
+        {
+            var filter = Builders<BsonDocument>.Filter.Empty;
+            var collection = _mongoDatabase.GetCollection<BsonDocument>("inventory");
+            var projection = Builders<BsonDocument>.Projection.Exclude("_id");
+            var result = collection.Find(filter).Project(s => new A
+            {
+                item = s["item"].ToString()
+            }).ToList();
+            //List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
+            //foreach (var item in result)
+            //{
+            //    var dic = item.ToDictionary();
+            //    data.Add(dic);
+            //}
+           var ss = BsonClassMap.RegisterClassMap<A>();
+         var sss=  BsonClassMap.RegisterClassMap<A>(cm => 
+           {
+               cm.MapMember(c => c.qty);
+               cm.MapMember(c => c.item);
+           });
+      
+            return result;
+        }
+
+
+        #endregion
+    }
+    public class A
+    {
+        public ObjectId Id { get; set; }
+        public string item { get; set; }
+        public int qty { get; set; }
     }
 }
