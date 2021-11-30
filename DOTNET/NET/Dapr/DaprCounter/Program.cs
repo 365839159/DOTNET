@@ -22,6 +22,8 @@ namespace DaprCounter
                 await Task.Delay(1000);
             }
             Console.WriteLine("Hello World!");
+            
         }
+        
     }
 }
