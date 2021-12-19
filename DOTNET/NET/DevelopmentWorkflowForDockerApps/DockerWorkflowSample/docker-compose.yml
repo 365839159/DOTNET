@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  service1:
+    image: ${DOCKER_REGISTRY-}service1
+    ports:
+      - "3500:3500"
+    build:
+      context: .
+      dockerfile: Service1/Dockerfile
+    networks:
+      - hello-dapr
+
+  service1-dapr:
+     image: "daprio/daprd:latest"
+     command: [
+          "./daprd",
+         "-app-id", "service1",
+         "-app-port", "80",
+         ]
+     depends_on:
+          - service1
+     network_mode: "service:service1" # Attach the nodeapp-dapr service to the nodeapp network namespace
+
+  service2:
+    image: ${DOCKER_REGISTRY-}service2
+    ports:
+      - "3600:3500"
+    build:
+      context: .
+      dockerfile: Service2/Dockerfile
+    networks:
+      - hello-dapr
+
+  service2-dapr:
+     image: "daprio/daprd:latest"
+     command: [
+          "./daprd",
+         "-app-id", "service2",
+         "-app-port", "80",
+         ]
+     depends_on:
+          - service2
+     network_mode: "service:service2"
+networks:
+  hello-dapr:
+    external: true

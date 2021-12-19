@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  service1:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "7000:80"
+
+  service2:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8000:80"
+
