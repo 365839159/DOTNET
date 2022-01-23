@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mongo", "Mongo", "{EB66EC88-C698-43C2-9A04-E6AAC90F4DEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoSample", "MongoSample\MongoSample.csproj", "{CA560126-DBEC-4369-B6BA-E3DBD2911417}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Redis", "Redis", "{8634A2D4-7FE4-4BD2-A243-8BE5F225990D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ElasticSearch", "ElasticSearch", "{B5BF5B8B-22EA-4416-82FC-709FE8D53C2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA560126-DBEC-4369-B6BA-E3DBD2911417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA560126-DBEC-4369-B6BA-E3DBD2911417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA560126-DBEC-4369-B6BA-E3DBD2911417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA560126-DBEC-4369-B6BA-E3DBD2911417}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA560126-DBEC-4369-B6BA-E3DBD2911417} = {EB66EC88-C698-43C2-9A04-E6AAC90F4DEA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF9689CE-2E22-4919-A886-874A686A5DF9}
+	EndGlobalSection
+EndGlobal
