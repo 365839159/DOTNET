@@ -18,23 +18,25 @@ namespace ElasticSearchSample.Controllers
         [HttpGet]
         public object Query()
         {
-            var result = _client.Search<UserInfo>(
-                  s => s.Query(
-                      s => s.Term(
-                          u => u.Name, "zxc"))).Hits.ToList();
-            return result;
 
+            Func<SearchDescriptor<UserInfo>, ISearchRequest> selector = s => s.Query(
+                q => q.Term(u => u.Name, "zxc") && q.Term(u => u.Age, 12)
+                );
+
+            var result = _client.Search(selector);
+
+            //var document=  result.Hits.Select(s => s.Source);
+            var document = result.Documents.ToList();
+            return document;
         }
 
         [HttpGet]
         public void Insert()
         {
             List<UserInfo> userInfos = new List<UserInfo> {
-
              new UserInfo(){  Name="zxc", Adress="北京", Age=12, Id=1, Phone="1234567891"}
             };
-            var result = _client.BulkAll<UserInfo>(userInfos);
-
+            var result = _client.IndexMany<UserInfo>(userInfos);
         }
     }
 }
