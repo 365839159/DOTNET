@@ -64,7 +64,12 @@ namespace EFCoreSample.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Sex")
+                        .HasColumnType("bit");
 
                     b.HasKey("PersonId");
 

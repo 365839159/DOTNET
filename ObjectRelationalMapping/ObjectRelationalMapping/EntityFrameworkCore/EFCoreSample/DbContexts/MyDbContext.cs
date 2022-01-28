@@ -18,6 +18,11 @@ namespace EFCoreSample.DbContexts
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("server=.;uid=sa;pwd=zxc123...;database=Demo");
+            optionsBuilder.LogTo(msg =>
+            {
+                if (!msg.Contains("CommandExecuting")) return;
+                Console.WriteLine(msg);
+            });
         }
 
         /// <summary>
@@ -28,6 +33,9 @@ namespace EFCoreSample.DbContexts
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+            //所有表的配置，特乱
+            // modelBuilder.Entity<Book>().ToTable("t_Books").HasKey(s => s.BookId);
+            // modelBuilder.Entity<Book>().Property(s => s.Title).HasMaxLength(50);
         }
     }
 }
