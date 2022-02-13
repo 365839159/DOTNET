@@ -39,7 +39,7 @@ namespace EFCoreSample.Entitys.PersonEntity
             //     .HasColumnType("nvarchar(20)")
             //     //配置长度
             //     .HasMaxLength(50)
-            //     //必学的
+            //     //必需的
             //     .IsRequired(true)
             //     //unicode 字符
             //     .IsUnicode(true)

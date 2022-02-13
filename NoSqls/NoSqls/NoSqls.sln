@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewTask", "NewTask\NewTask.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Worker", "Worker\Worker.csproj", "{DF1CF6C5-6EA4-4193-89B9-257DB420C980}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchSample", "ElasticSearchSample\ElasticSearchSample.csproj", "{F8FDC996-B642-46BD-8657-3D13DC97FBFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearchSample", "ElasticSearchSample\ElasticSearchSample.csproj", "{F8FDC996-B642-46BD-8657-3D13DC97FBFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisSample", "RedisSample\RedisSample.csproj", "{D4356E1B-3458-49A7-9F2A-B7E64F60013F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{F8FDC996-B642-46BD-8657-3D13DC97FBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8FDC996-B642-46BD-8657-3D13DC97FBFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8FDC996-B642-46BD-8657-3D13DC97FBFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4356E1B-3458-49A7-9F2A-B7E64F60013F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4356E1B-3458-49A7-9F2A-B7E64F60013F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4356E1B-3458-49A7-9F2A-B7E64F60013F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4356E1B-3458-49A7-9F2A-B7E64F60013F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{E9994F42-D82B-4F1A-9885-B7650C6CB55F} = {53AAEFB0-9548-4694-8FCC-3A48D0D14AC9}
 		{DF1CF6C5-6EA4-4193-89B9-257DB420C980} = {53AAEFB0-9548-4694-8FCC-3A48D0D14AC9}
 		{F8FDC996-B642-46BD-8657-3D13DC97FBFE} = {B5BF5B8B-22EA-4416-82FC-709FE8D53C2A}
+		{D4356E1B-3458-49A7-9F2A-B7E64F60013F} = {8634A2D4-7FE4-4BD2-A243-8BE5F225990D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF9689CE-2E22-4919-A886-874A686A5DF9}
