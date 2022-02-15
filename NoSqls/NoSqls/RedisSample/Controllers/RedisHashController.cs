@@ -81,5 +81,56 @@ namespace RedisSample.Controllers
 
         #endregion
 
+
+        /// <summary>
+        /// 不存在才设置
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public Task<bool> SetEntryInHashIfNotExists(string hashId, string key, string value)
+        {
+            using (IRedisClient redisClient = new RedisClient(redisConn, redisPoint))
+            {
+                bool result = redisClient.SetEntryInHashIfNotExists(hashId, key, value);
+                return Task.FromResult(result);
+            }
+        }
+
+        /// <summary>
+        /// 操作对象
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public Task<bool> StoreAsHash(UserInfo user)
+        {
+            using (IRedisClient redisClient = new RedisClient(redisConn, redisPoint))
+            {
+                redisClient.StoreAsHash<UserInfo>(user);
+                return Task.FromResult(true);
+            }
+        }
+
+        /// <summary>
+        /// 操作对象
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public Task<UserInfo> GetFromHash(int id)
+        {
+            using (IRedisClient redisClient = new RedisClient(redisConn, redisPoint))
+            {
+                var result = redisClient.GetFromHash<UserInfo>(id);
+                return Task.FromResult(result);
+            }
+        }
+
+
+    }
+
+    public class UserInfo
+    {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public int Age { get; set; }
     }
 }
