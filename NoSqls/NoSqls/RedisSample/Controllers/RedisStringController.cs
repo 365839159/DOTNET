@@ -5,7 +5,7 @@ namespace RedisSample.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class RedisStringSampleController : ControllerBase
+    public class RedisStringController : ControllerBase
     {
         //private readonly string redisConn = "192.168.159.25";
         private readonly string redisConn = "127.0.0.1";
