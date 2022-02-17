@@ -125,7 +125,7 @@ namespace RedisSample.Controllers
         /// <param name="values"></param>
         /// <returns></returns>
         [HttpPost]
-        public Task<bool> RemoveItemFromList(string listId)
+        public Task<bool> RemoveAllFromList(string listId)
         {
             using (IRedisClient redisClinet = new RedisClient(redisConn, redisPoint))
             {
@@ -191,11 +191,11 @@ namespace RedisSample.Controllers
         /// <param name="values"></param>
         /// <returns></returns>
         [HttpPost]
-        public Task<string> PopAndPushItemBetweenLists(string listId,string newListId)
+        public Task<string> PopAndPushItemBetweenLists(string listId, string newListId)
         {
             using (IRedisClient redisClinet = new RedisClient(redisConn, redisPoint))
             {
-                var result = redisClinet.PopAndPushItemBetweenLists(listId,newListId);
+                var result = redisClinet.PopAndPushItemBetweenLists(listId, newListId);
                 return Task.FromResult(result);
             }
         }
