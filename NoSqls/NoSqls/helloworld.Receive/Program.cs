@@ -2,7 +2,14 @@
 using RabbitMQ.Client;
 using System.Text;
 
-var factory = new ConnectionFactory() { HostName = "localhost" };
+//创建连接的工厂（指定连接参数）
+var factory = new ConnectionFactory()
+{
+    HostName = "192.168.65.133",
+    UserName = "admin",
+    Password = "admin",
+    Port = 5672
+};
 using (var connection = factory.CreateConnection())
 using (var channel = connection.CreateModel())
 {
