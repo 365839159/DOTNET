@@ -1,4 +1,6 @@
-using SampleEasyStackExchangeRedisProvider;
+
+using EasyToUse.Redis;
+using EasyToUse.StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSampleEasyRedis();
+builder.Services.AddScoped<IEasyToUseRedisProvider, StackExchangeProvider>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

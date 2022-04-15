@@ -1,5 +1,6 @@
+using EasyToUse.Redis;
 using Microsoft.AspNetCore.Mvc;
-using SampleEasyRedis;
+
 
 namespace EasyRedisTest.Controllers
 {
@@ -13,18 +14,24 @@ namespace EasyRedisTest.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IEasyRedisProvider easyRedisProvider;
+        private readonly IEasyToUseRedisProvider easyToUseRedisProvider;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IEasyRedisProvider easyRedisProvider)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IEasyToUseRedisProvider easyToUseRedisProvider)
         {
             _logger = logger;
-            this.easyRedisProvider = easyRedisProvider;
+            this.easyToUseRedisProvider = easyToUseRedisProvider;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            easyRedisProvider.Set("zxc", "zxc");
+            while (true)
+            {
+                easyToUseRedisProvider.Set("zxc", "zxc");
+                easyToUseRedisProvider.Del("zxc");
+            }
+
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

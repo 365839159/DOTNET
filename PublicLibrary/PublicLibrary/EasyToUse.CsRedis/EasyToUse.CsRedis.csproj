@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="csrediscore" Version="3.6.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasyToUse.Redis\EasyToUse.Redis.csproj" />
+  </ItemGroup>
+
+</Project>
