@@ -25,6 +25,9 @@ using DesignPatternsSample.装饰者模式;
 using DesignPatternsSample.装饰者模式.Components;
 using DesignPatternsSample.装饰者模式.Decorators;
 using DesignPatternsSample.模板方法;
+using DesignPatternsSample.命令模式;
+using DesignPatternsSample.命令模式.Commands;
+using DesignPatternsSample.命令模式.Objects;
 
 
 //List<Duck> ducks = new List<Duck>() { new ReadDuck(), new BlackDuck(), new RubberDuck() };
@@ -123,28 +126,42 @@ using DesignPatternsSample.模板方法;
 //Caffeine caffeine = new Caffeine();
 //caffeine.PrepareRecipe();
 
-DesignPatternsSample.模板方法.duckSort.Duck[] ducks = {
-    new DesignPatternsSample.模板方法.duckSort.Duck("Daffy", 8) ,
-    new DesignPatternsSample.模板方法.duckSort.Duck("Dewey", 2) ,
-    new DesignPatternsSample.模板方法.duckSort.Duck("Howard",7) ,
-    new DesignPatternsSample.模板方法.duckSort.Duck("Donald", 10) ,
-    new DesignPatternsSample.模板方法.duckSort.Duck("Huey", 2)
-};
+//DesignPatternsSample.模板方法.duckSort.Duck[] ducks = {
+//    new DesignPatternsSample.模板方法.duckSort.Duck("Daffy", 8) ,
+//    new DesignPatternsSample.模板方法.duckSort.Duck("Dewey", 2) ,
+//    new DesignPatternsSample.模板方法.duckSort.Duck("Howard",7) ,
+//    new DesignPatternsSample.模板方法.duckSort.Duck("Donald", 10) ,
+//    new DesignPatternsSample.模板方法.duckSort.Duck("Huey", 2)
+//};
 
-Console.WriteLine("Before sorting");
-foreach (var item in ducks)
-{
-    Console.WriteLine(item.ToString());
-}
-Console.WriteLine("After sorting");
-Array.Sort(ducks);
-foreach (var item in ducks)
-{
-    Console.WriteLine(item.ToString());
-}
+//Console.WriteLine("Before sorting");
+//foreach (var item in ducks)
+//{
+//    Console.WriteLine(item.ToString());
+//}
+//Console.WriteLine("After sorting");
+//Array.Sort(ducks);
+//foreach (var item in ducks)
+//{
+//    Console.WriteLine(item.ToString());
+//}
 #endregion
 
-
+#region 命令模式
+// 命令模式将请求封装成对象，以便使用不同的请求、队列、或日志来参数化其他对象。命令模式也支持撤销的操作
+//单个命令
+//SimpleRemoteControl simpleRemoteControl = new SimpleRemoteControl();
+//simpleRemoteControl.SetCommand(new LightOnCommand(new Light()));
+//simpleRemoteControl.ButtonWasPressed();
+//绑定
+RemoteControl remoteControl = new RemoteControl();
+Light light = new Light();
+LightOnCommand lightOnCommand = new LightOnCommand(light);
+LightOffCommand lightOffCommand = new LightOffCommand(light);
+remoteControl.SetCommand(0, lightOnCommand, lightOffCommand);
+remoteControl.OnButtonWasPushed(0);
+remoteControl.OffButtonWasPushed(0);
+#endregion
 
 Console.ReadKey();
 
