@@ -10,5 +10,6 @@ namespace DesignPatternsSample.命令模式
     public interface ICommand
     {
         public void Execute();
+        public void Undo();
     }
 }

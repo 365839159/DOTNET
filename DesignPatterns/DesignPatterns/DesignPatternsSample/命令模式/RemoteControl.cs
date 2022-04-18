@@ -11,16 +11,18 @@ namespace DesignPatternsSample.命令模式
     {
         ICommand[] onCommand;
         ICommand[] offCommand;
-
+        ICommand undoCommand;
         public RemoteControl()
         {
             onCommand = new ICommand[100];
             offCommand = new ICommand[100];
+            ICommand noCommand = new NoCommand();
             for (int i = 0; i < 100; i++)
             {
-                onCommand[i] = new NoCommand();
-                offCommand[i] = new NoCommand();
+                onCommand[i] = noCommand;
+                offCommand[i] = noCommand;
             }
+            undoCommand = noCommand;
         }
 
         public void SetCommand(int slot, ICommand onCommand, ICommand offCommand)
@@ -31,11 +33,17 @@ namespace DesignPatternsSample.命令模式
         public void OnButtonWasPushed(int slot)
         {
             this.onCommand[slot].Execute();
+            undoCommand = this.onCommand[slot];
         }
 
         public void OffButtonWasPushed(int slot)
         {
             this.offCommand[slot].Execute();
+            undoCommand = this.offCommand[slot];
+        }
+        public void UndoButtonWasPushed()
+        {
+            this.undoCommand.Undo();
         }
     }
 }

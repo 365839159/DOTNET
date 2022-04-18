@@ -19,5 +19,10 @@ namespace DesignPatternsSample.命令模式.Commands
         {
             this.light.Off();
         }
+
+        public void Undo()
+        {
+            this.light.On();
+        }
     }
 }

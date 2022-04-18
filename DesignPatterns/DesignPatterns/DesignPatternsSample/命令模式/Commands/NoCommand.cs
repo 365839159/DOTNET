@@ -12,5 +12,10 @@ namespace DesignPatternsSample.命令模式.Commands
         {
 
         }
+
+        public void Undo()
+        {
+          
+        }
     }
 }

@@ -158,9 +158,13 @@ RemoteControl remoteControl = new RemoteControl();
 Light light = new Light();
 LightOnCommand lightOnCommand = new LightOnCommand(light);
 LightOffCommand lightOffCommand = new LightOffCommand(light);
-remoteControl.SetCommand(0, lightOnCommand, lightOffCommand);
-remoteControl.OnButtonWasPushed(0);
-remoteControl.OffButtonWasPushed(0);
+//remoteControl.SetCommand(0, lightOnCommand, lightOffCommand);
+//remoteControl.OnButtonWasPushed(0);
+//remoteControl.OffButtonWasPushed(0);
+//remoteControl.UndoButtonWasPushed();
+MacroCommand command = new MacroCommand(lightOnCommand, lightOffCommand);
+command.Execute();
+command.Undo();
 #endregion
 
 Console.ReadKey();
