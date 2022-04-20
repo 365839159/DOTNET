@@ -28,6 +28,7 @@ using DesignPatternsSample.模板方法;
 using DesignPatternsSample.命令模式;
 using DesignPatternsSample.命令模式.Commands;
 using DesignPatternsSample.命令模式.Objects;
+using System.Collections.Concurrent;
 
 
 //List<Duck> ducks = new List<Duck>() { new ReadDuck(), new BlackDuck(), new RubberDuck() };
@@ -153,6 +154,7 @@ using DesignPatternsSample.命令模式.Objects;
 //SimpleRemoteControl simpleRemoteControl = new SimpleRemoteControl();
 //simpleRemoteControl.SetCommand(new LightOnCommand(new Light()));
 //simpleRemoteControl.ButtonWasPressed();
+
 //绑定
 RemoteControl remoteControl = new RemoteControl();
 Light light = new Light();
@@ -162,11 +164,47 @@ LightOffCommand lightOffCommand = new LightOffCommand(light);
 //remoteControl.OnButtonWasPushed(0);
 //remoteControl.OffButtonWasPushed(0);
 //remoteControl.UndoButtonWasPushed();
-MacroCommand command = new MacroCommand(lightOnCommand, lightOffCommand);
-command.Execute();
-command.Undo();
+
+//多任务执行
+//MacroCommand command = new MacroCommand(lightOnCommand, lightOffCommand);
+//command.Execute();
+//command.Undo();
+
+
+// 队列场景(一端添加命令，然后另一端这是线程从队列中取出一个命令调用他的Execute 方法)
+//ConcurrentQueue<ICommand> queue = new ConcurrentQueue<ICommand>();
+//Task.Run(() =>
+//{
+//    while (true)
+//    {
+//        ICommand command;
+//        bool result = queue.TryDequeue(out command);
+//        if (result)
+//            command.Execute();
+//    }
+
+//});
+//while (true)
+//{
+//    Task.Delay(1000);
+//    queue.Enqueue(lightOnCommand);
+//    queue.Enqueue(lightOffCommand);
+//    Console.WriteLine(queue.Count);
+//}
 #endregion
 
+
+#region 代理模式
+
+
+
+#endregion
+
+#region MVC 符合模式
+
+
+
+#endregion
 Console.ReadKey();
 
 

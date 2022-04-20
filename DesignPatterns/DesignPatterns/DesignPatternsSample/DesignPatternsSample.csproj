@@ -12,4 +12,8 @@
     <ProjectReference Include="..\SingletonPattern\SingletonPattern.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="代理模式\" />
+  </ItemGroup>
+
 </Project>
