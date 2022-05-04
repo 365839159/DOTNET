@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Acme.IssueManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="5.2.1" />
+    <ProjectReference Include="..\Acme.IssueManagement.Application.Contracts\Acme.IssueManagement.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
