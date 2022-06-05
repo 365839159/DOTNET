@@ -1,0 +1,27 @@
+mysql:
+  path: 127.0.0.1
+  port: "3306"
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  dbName: gva
+  username: root
+  password: root
+  maxIdleConns: 10
+  maxOpenConns: 100
+  logMode: error
+  logZap: true
+
+zap:
+  level: info
+  format: console
+  prefix: '[github.com/flipped-aurora/gin-vue-admin/server]'
+  director: log
+  showLine: true
+  encodeLevel: LowercaseColorLevelEncoder
+  stacktraceKey: stacktrace
+  logInConsole: true
+
+redis:
+  db: 0
+  addr: 127.0.0.1:6379
+  password: ""
+  poolSize: 20

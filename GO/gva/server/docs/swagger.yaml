@@ -1,0 +1,139 @@
+definitions:
+  entity.SysUser:
+    properties:
+      activeColor:
+        description: 活跃颜色
+        type: string
+      authorityId:
+        description: 用户角色ID
+        type: string
+      baseColor:
+        description: 基础颜色
+        type: string
+      createdAt:
+        description: 创建时间
+        type: string
+      email:
+        description: 用户邮箱
+        type: string
+      headerImg:
+        description: 用户头像
+        type: string
+      id:
+        description: 主键ID
+        type: integer
+      nickName:
+        description: 用户昵称
+        type: string
+      phone:
+        description: |-
+          Authority   SysAuthority   `json:"authority" gorm:"foreignKey:AuthorityId;references:AuthorityId;comment:用户角色"`
+          Authorities []SysAuthority `json:"authorities" gorm:"many2many:sys_user_authority;"`
+        type: string
+      sideMode:
+        description: 用户侧边主题
+        type: string
+      updatedAt:
+        description: 更新时间
+        type: string
+      userName:
+        description: 用户登录名
+        type: string
+      uuid:
+        description: 用户UUID
+        type: string
+    type: object
+  request.Captcha:
+    properties:
+      timeSpan:
+        type: string
+    type: object
+  request.Login:
+    properties:
+      captcha:
+        type: string
+      captchaId:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  response.CaptchaResponse:
+    properties:
+      code:
+        type: string
+    type: object
+  response.LoginResponse:
+    properties:
+      expiresAt:
+        type: integer
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/entity.SysUser'
+    type: object
+  response.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      msg:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /base/captcha:
+    post:
+      parameters:
+      - description: 用户名, 密码, 验证码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Captcha'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回包括用户信息,token,过期时间
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/response.CaptchaResponse'
+                msg:
+                  type: string
+              type: object
+      summary: 验证码
+      tags:
+      - Base
+  /base/login:
+    post:
+      parameters:
+      - description: 用户名, 密码, 验证码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回包括用户信息,token,过期时间
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/response.LoginResponse'
+                msg:
+                  type: string
+              type: object
+      summary: 用户登录
+      tags:
+      - Base
+swagger: "2.0"
