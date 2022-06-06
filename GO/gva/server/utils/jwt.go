@@ -7,7 +7,10 @@ import (
 	"time"
 )
 
-func CreateToken() (string, error) {
+type JWT struct {
+}
+
+func (j *JWT) CreateToken() (string, error) {
 	mySigningKey := []byte("AllYourBase")
 
 	type MyCustomClaims struct {
@@ -28,7 +31,7 @@ func CreateToken() (string, error) {
 	return ss, err
 }
 
-func ParseToken(token string) {
+func (j *JWT) ParseToken(token string) {
 
 	t, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		return []byte("AllYourBase"), nil
