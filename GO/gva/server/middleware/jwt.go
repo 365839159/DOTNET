@@ -3,6 +3,7 @@ package middleware
 import (
 	"github.com/gin-gonic/gin"
 	"server/model/common/response"
+	"server/utils"
 	"strings"
 )
 
@@ -14,6 +15,7 @@ func JwtAuth() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-
+		jwt := utils.JWT{}
+		jwt.ParseToken(token)
 	}
 }

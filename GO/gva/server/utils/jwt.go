@@ -9,14 +9,14 @@ import (
 
 type JWT struct {
 }
+type MyCustomClaims struct {
+	Foo string `json:"foo"`
+	jwt.RegisteredClaims
+}
 
 func (j *JWT) CreateToken() (string, error) {
 	mySigningKey := []byte("AllYourBase")
 
-	type MyCustomClaims struct {
-		Foo string `json:"foo"`
-		jwt.RegisteredClaims
-	}
 	// Create the Claims
 	claims := MyCustomClaims{
 		"bar",
@@ -31,10 +31,10 @@ func (j *JWT) CreateToken() (string, error) {
 	return ss, err
 }
 
-func (j *JWT) ParseToken(token string) {
+func (j *JWT) ParseToken(token string) (claims *MyCustomClaims, err error) {
 
-	t, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
-		return []byte("AllYourBase"), nil
+	t, err := jwt.ParseWithClaims(token, &MyCustomClaims{}, func(token *jwt.Token) (i interface{}, e error) {
+		return j.SigningKey, nil
 	})
 
 	if t.Valid {
