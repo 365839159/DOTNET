@@ -10,3 +10,7 @@ type Login struct {
 type Captcha struct {
 	TimeSpan string `json:"timeSpan"`
 }
+
+type GetUserInfo struct {
+	Id int `json:"id"`
+}

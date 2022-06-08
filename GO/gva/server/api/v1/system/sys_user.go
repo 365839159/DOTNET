@@ -36,3 +36,14 @@ func (b *BaseApi) Login(c *gin.Context) {
 		response.OkWithData(token, c)
 	}
 }
+
+func (b *BaseApi) GetUserInfo(c *gin.Context) {
+	var getUserInfoRequest systemReq.GetUserInfo
+	c.ShouldBindJSON(getUserInfoRequest)
+	user, err := userService.GetUserInfo(getUserInfoRequest.Id)
+	if err != nil {
+		global.GVA_LOG.Error(err.Error(), zap.Error(err))
+		response.FailWithMessage(err.Error(), c)
+	}
+	response.OkWithData(user, c)
+}

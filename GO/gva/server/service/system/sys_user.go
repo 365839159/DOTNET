@@ -24,3 +24,15 @@ func (userService *UserService) Login(u *entity.SysUser) (userInter *entity.SysU
 	}
 	return &user, err
 }
+
+func (userService *UserService) GetUserInfo(Id int) (userInter *entity.SysUser, err error) {
+	if global.GVA_DB == nil {
+		return nil, fmt.Errorf("db not init")
+	}
+	var user entity.SysUser
+	err = global.GVA_DB.Where("Id = ?", Id).First(&user).Error
+	if err == nil {
+		return &user, err
+	}
+	return nil, err
+}
