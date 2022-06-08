@@ -1,9 +1,14 @@
 package main
 
-import "go-bsic/src"
+import "go-basic/src"
 
 func main() {
+	//数组
 	//src.ArrayRun()
+	//切片
+	//src.SliceRun()
 
-	src.SliceRun()
+	//日志
+	src.LogRun()
+
 }
