@@ -30,9 +30,10 @@ func (b *BaseApi) Login(c *gin.Context) {
 		global.GVA_LOG.Error("登录失败！用户名不存在或者密码错误！", zap.Error(err))
 		response.FailWithMessage("用户名不存在或者密码错误", c)
 	} else {
-		token, _ := utils.CreateToken()
+		j := &utils.JWT{}
+		token, _ := j.CreateToken()
 		fmt.Println(token)
-		utils.ParseToken(token)
+		j.ParseToken(token)
 		response.OkWithData(token, c)
 	}
 }
