@@ -9,6 +9,8 @@ func main() {
 	//src.SliceRun()
 
 	//日志
-	src.LogRun()
+	//src.LogRun()
 
+	//map
+	src.MapRun()
 }
