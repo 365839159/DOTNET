@@ -9,6 +9,11 @@ func main() {
 	//src.SliceRun()
 
 	//日志
-	src.LogRun()
+	//src.LogRun()
 
+	//jwt
+	//src.JWTRun()
+
+	//Mongo
+	src.MongoRun()
 }
