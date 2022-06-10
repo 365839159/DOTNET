@@ -34,7 +34,7 @@ func (j *JWT) CreateToken() (string, error) {
 func (j *JWT) ParseToken(token string) (claims *MyCustomClaims, err error) {
 
 	t, err := jwt.ParseWithClaims(token, &MyCustomClaims{}, func(token *jwt.Token) (i interface{}, e error) {
-		return j.SigningKey, nil
+		return "AllYourBase", nil
 	})
 
 	if t.Valid {
@@ -47,5 +47,5 @@ func (j *JWT) ParseToken(token string) (claims *MyCustomClaims, err error) {
 	} else {
 		fmt.Println("Couldn't handle this token:", err)
 	}
-
+	return nil, nil
 }
