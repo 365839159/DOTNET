@@ -15,5 +15,11 @@ func main() {
 	//src.JWTRun()
 
 	//Mongo
-	src.MongoRun()
+	//src.MongoRun()
+
+	//es
+	//src.ESRun()
+
+	//gorm
+	src.GormRun()
 }
