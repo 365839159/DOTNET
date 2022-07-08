@@ -15,5 +15,8 @@ func main() {
 	//src.JWTRun()
 
 	//Mongo
-	src.MongoRun()
+	//src.MongoRun()
+	// struct
+	src.StructRun()
+
 }

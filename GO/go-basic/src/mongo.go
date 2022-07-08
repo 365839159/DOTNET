@@ -15,8 +15,8 @@ func MongoRun() {
 	//ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	//defer cancel()
 
-	//client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://root:cexZhongtai0412%2B%40%2B@82.156.193.96:28625"))
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://localhost:27017"))
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://root:cexZhongtai0412+@+@82.156.193.96:28625"))
+	//client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://localhost:27017"))
 
 	client.Ping(context.TODO(), readpref.Primary())
 	if err != nil {
@@ -24,8 +24,8 @@ func MongoRun() {
 		return
 	}
 
-	//collection := client.Database("BasicDataCenterTest").Collection("D_AttachmentType")
-	collection := client.Database("testing").Collection("numbers")
+	collection := client.Database("BasicDataCenterTest").Collection("D_AttachmentType")
+	//collection := client.Database("testing").Collection("numbers")
 
 	//ctx, cancel = context.WithTimeout(context.Background(), 5*time.Second)
 	//defer cancel()
@@ -34,7 +34,7 @@ func MongoRun() {
 	//fmt.Println(id)
 
 	result := bson.D{}
-	filter := bson.D{{"PeriodIdx", 1}}
+	filter := bson.D{}
 	//ctx, cancel = context.WithTimeout(context.Background(), 50*time.Second)
 	//defer cancel()
 	err = collection.FindOne(context.TODO(), filter).Decode(&result)
