@@ -16,7 +16,10 @@ func main() {
 
 	//Mongo
 	//src.MongoRun()
-	// struct
-	src.StructRun()
 
+	//es
+	//src.ESRun()
+
+	//gorm
+	src.GormRun()
 }
